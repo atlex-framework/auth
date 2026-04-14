@@ -1,0 +1,71 @@
+{
+  "name": "@atlex/auth",
+  "version": "0.1.0-beta",
+  "description": "JWT and session authentication, guards, and password hashing for Atlex",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Karen Hamazaspyan",
+    "url": "https://github.com/khamazaspyan"
+  },
+  "keywords": [
+    "atlex",
+    "auth",
+    "typescript",
+    "jwt",
+    "session"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atlex-framework/atlex-monorepo.git",
+    "directory": "packages/auth"
+  },
+  "homepage": "https://atlex.dev",
+  "bugs": {
+    "url": "https://github.com/atlex-framework/atlex-monorepo/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run -c vitest.config.ts",
+    "prepublishOnly": "pnpm run typecheck && pnpm run build"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "peerDependencies": {
+    "express": "^5.1.0"
+  },
+  "dependencies": {
+    "@atlex/core": "workspace:*",
+    "@atlex/orm": "workspace:*",
+    "argon2": "^0.41.1",
+    "bcryptjs": "^2.4.3",
+    "ioredis": "^5.4.2",
+    "jose": "^5.9.6",
+    "uuid": "^11.0.5"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/express": "^5.0.3",
+    "better-sqlite3": "^12.8.0",
+    "express": "^5.1.0",
+    "typescript": "^6.0.0-dev.20260401",
+    "vitest": "^3.2.4"
+  }
+}
