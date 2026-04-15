@@ -20,12 +20,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/atlex-framework/atlex-monorepo.git",
+    "url": "git+https://github.com/atlex-framework/auth.git",
     "directory": "packages/auth"
   },
   "homepage": "https://atlex.dev",
   "bugs": {
-    "url": "https://github.com/atlex-framework/atlex-monorepo/issues"
+    "url": "https://github.com/atlex-framework/auth/issues"
   },
   "publishConfig": {
     "access": "public"
