@@ -1,6 +1,6 @@
 # @atlex/auth
 
-> Complete authentication system with JWT, sessions, guards, authorization, password hashing, and email verification for Express + TypeScript applications.
+> Complete authentication system with JWT, sessions, guards, authorization, password hashing, and email verification for Express + Node.js applications.
 
 [![npm version](https://img.shields.io/npm/v/@atlex/auth.svg?style=flat-square&color=7c3aed)](https://www.npmjs.com/package/@atlex/auth)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?style=flat-square)](https://www.typescriptlang.org/)
@@ -772,4 +772,6 @@ For more information, visit [atlex.dev/guide/auth](https://atlex.dev/guide/auth)
 
 ## License
 
-MIT
+## MIT
+
+Part of [Atlex](https://atlex.dev) — A modern framework for Node.js.

@@ -10,10 +10,28 @@
   },
   "keywords": [
     "atlex",
+    "authentication",
+    "authorization",
     "auth",
-    "typescript",
     "jwt",
-    "session"
+    "jwt-auth",
+    "json-web-token",
+    "session",
+    "session-auth",
+    "cookie-auth",
+    "guards",
+    "middleware-auth",
+    "bcrypt",
+    "password-hashing",
+    "oauth",
+    "passport-alternative",
+    "sanctum-alternative",
+    "laravel-sanctum",
+    "laravel-auth",
+    "laravel-alternative",
+    "nodejs",
+    "javascript",
+    "typescript"
   ],
   "engines": {
     "node": ">=20"
