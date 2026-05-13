@@ -228,6 +228,53 @@ const user = await auth.socialLogin(provider, idToken, async (socialUser) => {
 `@atlex/auth` verifies provider tokens and returns normalized social profile data. Creating,
 linking, and persisting application users remains owned by the consuming app.
 
+#### Sign in with Apple
+
+Applications can verify an Apple identity token with `AppleProvider`. Use the Apple services
+ID or bundle ID as `clientId`:
+
+```typescript
+import { app } from '@atlex/core'
+import { AppleProvider, AuthManager } from '@atlex/auth'
+import { config } from '@atlex/config'
+
+const provider = new AppleProvider({
+  clientId: config('auth.apple.clientId'),
+})
+
+const auth = app.make<AuthManager>('auth')
+const user = await auth.socialLogin(provider, identityToken, async (socialUser) => {
+  return await User.firstOrCreate(
+    { apple_id: socialUser.appleId },
+    {
+      email: socialUser.email,
+      name: socialUser.name ?? 'Apple User',
+      apple_id: socialUser.appleId,
+      email_verified_at: socialUser.emailVerified ? new Date() : null,
+    },
+  )
+})
+```
+
+Apple only sends the user's name on the first sign-in. Store it immediately by verifying the
+identity token with the first-sign-in profile data before resolving or persisting the user:
+
+```typescript
+const socialUser = await provider.verify(identityToken, {
+  name: { firstName, lastName },
+})
+
+const user = await User.firstOrCreate(
+  { apple_id: socialUser.appleId },
+  {
+    email: socialUser.email,
+    name: socialUser.name ?? 'Apple User',
+    apple_id: socialUser.appleId,
+    email_verified_at: socialUser.emailVerified ? new Date() : null,
+  },
+)
+```
+
 ### Guards
 
 #### SessionGuard

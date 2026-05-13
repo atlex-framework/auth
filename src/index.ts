@@ -29,8 +29,19 @@ export {
 export { Policy } from './authorization/Policy.js'
 export { CallbackUserProvider } from './providers/CallbackUserProvider.js'
 export { DatabaseUserProvider } from './providers/DatabaseUserProvider.js'
+export {
+  AppleProvider,
+  type AppleProviderOptions,
+  type AppleUserName,
+  type AppleUserProfile,
+} from './providers/AppleProvider.js'
 export { GoogleProvider, type GoogleProviderOptions } from './providers/GoogleProvider.js'
-export type { GoogleSocialUser, SocialProvider, SocialUser } from './providers/SocialProvider.js'
+export type {
+  AppleSocialUser,
+  GoogleSocialUser,
+  SocialProvider,
+  SocialUser,
+} from './providers/SocialProvider.js'
 export { TokenGuard } from './guards/TokenGuard.js'
 export { SessionGuard } from './guards/SessionGuard.js'
 export { JwtProvider } from './jwt/JwtProvider.js'

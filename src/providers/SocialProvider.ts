@@ -54,6 +54,26 @@ export interface GoogleSocialUser extends SocialUser {
 }
 
 /**
+ * Normalized Apple user profile returned after identity-token verification.
+ */
+export interface AppleSocialUser extends SocialUser {
+  /**
+   * Apple provider discriminator.
+   */
+  readonly provider: 'apple'
+
+  /**
+   * Apple's `sub` claim, mirrored for Apple-specific application fields.
+   */
+  readonly appleId: string
+
+  /**
+   * Whether Apple reports the email address as a private relay address.
+   */
+  readonly isPrivateEmail: boolean
+}
+
+/**
  * Contract implemented by social identity providers that verify provider-issued tokens.
  */
 export interface SocialProvider<TSocialUser extends SocialUser = SocialUser> {
