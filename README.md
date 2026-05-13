@@ -198,6 +198,36 @@ const valid = await auth().validate(user, plainPassword)
 const broker = auth().broker('passwords')
 ```
 
+#### Google Social Login
+
+Applications can verify a Google ID token with `GoogleProvider`, then decide how that verified
+profile maps to their own user table:
+
+```typescript
+import { app } from '@atlex/core'
+import { AuthManager, GoogleProvider } from '@atlex/auth'
+import { config } from '@atlex/config'
+
+const provider = new GoogleProvider({
+  clientId: config('auth.google.clientId'),
+})
+
+const auth = app.make<AuthManager>('auth')
+const user = await auth.socialLogin(provider, idToken, async (socialUser) => {
+  return await User.firstOrCreate(
+    { email: socialUser.email },
+    {
+      name: socialUser.name,
+      google_id: socialUser.googleId,
+      email_verified_at: socialUser.emailVerified ? new Date() : null,
+    },
+  )
+})
+```
+
+`@atlex/auth` verifies provider tokens and returns normalized social profile data. Creating,
+linking, and persisting application users remains owned by the consuming app.
+
 ### Guards
 
 #### SessionGuard
