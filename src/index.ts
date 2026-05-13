@@ -1,6 +1,11 @@
 import './types/express-augmentation.js'
 
-export { AuthManager, type GuardFactory, type UserProviderFactory } from './AuthManager.js'
+export {
+  AuthManager,
+  type GuardFactory,
+  type SocialUserResolver,
+  type UserProviderFactory,
+} from './AuthManager.js'
 export { AuthServiceProvider, type AuthProviderBindings } from './AuthServiceProvider.js'
 export type { AuthConfig } from './config/AuthConfig.js'
 export { defaultAuthConfig } from './config/defaultAuthConfig.js'
@@ -24,6 +29,8 @@ export {
 export { Policy } from './authorization/Policy.js'
 export { CallbackUserProvider } from './providers/CallbackUserProvider.js'
 export { DatabaseUserProvider } from './providers/DatabaseUserProvider.js'
+export { GoogleProvider, type GoogleProviderOptions } from './providers/GoogleProvider.js'
+export type { GoogleSocialUser, SocialProvider, SocialUser } from './providers/SocialProvider.js'
 export { TokenGuard } from './guards/TokenGuard.js'
 export { SessionGuard } from './guards/SessionGuard.js'
 export { JwtProvider } from './jwt/JwtProvider.js'

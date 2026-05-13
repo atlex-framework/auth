@@ -17,6 +17,7 @@ import type { TokenAttemptResult } from './jwt/TokenAttemptResult.js'
 import type { TokenPair } from './jwt/TokenPair.js'
 import type { PasswordBroker } from './passwords/PasswordBroker.js'
 import { PasswordBrokerManager } from './passwords/PasswordBrokerManager.js'
+import type { SocialProvider, SocialUser } from './providers/SocialProvider.js'
 import type { SessionManager } from './session/SessionManager.js'
 
 export type GuardFactory = (
@@ -26,6 +27,13 @@ export type GuardFactory = (
 ) => Guard | StatefulGuard
 
 export type UserProviderFactory = (providerName: string) => UserProvider
+
+/**
+ * Resolves a verified social provider profile into an application authenticatable user.
+ */
+export type SocialUserResolver<TSocialUser extends SocialUser = SocialUser> = (
+  socialUser: TSocialUser,
+) => Promise<Authenticatable>
 
 /**
  * Multi-guard authentication facade (session + JWT).
@@ -143,6 +151,23 @@ export class AuthManager {
       throw new Error('AuthManager.attemptWithTokens requires a token guard.')
     }
     return await g.attemptWithCredentials(credentials)
+  }
+
+  /**
+   * Verifies a social provider token and resolves it into an application user.
+   *
+   * @param provider - Social provider implementation that verifies the token.
+   * @param token - Provider-issued token.
+   * @param resolveUser - Application-owned resolver that finds or creates an authenticatable user.
+   * @returns The resolved application user.
+   */
+  public async socialLogin<TSocialUser extends SocialUser>(
+    provider: SocialProvider<TSocialUser>,
+    token: string,
+    resolveUser: SocialUserResolver<TSocialUser>,
+  ): Promise<Authenticatable> {
+    const socialUser = await provider.verify(token)
+    return await resolveUser(socialUser)
   }
 
   /**
