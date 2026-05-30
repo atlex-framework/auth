@@ -1,6 +1,6 @@
 {
   "name": "@atlex/auth",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "JWT and session authentication, guards, and password hashing for Atlex",
   "type": "module",
   "license": "MIT",
