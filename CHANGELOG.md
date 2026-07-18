@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.2
+
+### Patch Changes
+
+- b87b80b: Improve migrations
+- Updated dependencies [b87b80b]
+  - @atlex/orm@0.2.2
+  - @atlex/core@0.2.2
+
 ## 0.2.1
 
 ### Patch Changes
